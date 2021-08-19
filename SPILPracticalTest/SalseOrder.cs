@@ -75,8 +75,26 @@ namespace SPILPracticalTest
 
             var salseDetail = _db.SalseDetails
                 .Where(a => a.ClientDetailId == EditClientDetail.Id).OrderByDescending(a => a.Id).ToList();
-           
-            dgvSales.DataSource = salseDetail;
+
+
+            foreach(SalseDetail sd in salseDetail)
+            {
+                foreach (DataGridViewRow row in dgvSales.Rows)
+                {
+                    StkItem stkItem = _db.StkItems.Where(a => a.StockLink == sd.StkItemId).FirstOrDefault();
+
+                    row.Cells["ItemCode"].Value = stkItem.StockLink;
+                    row.Cells["Description"].Value = stkItem.StockLink;
+                    row.Cells["Note"].Value = sd.Note1;
+                    row.Cells["Qty"].Value = sd.Qty;
+                    row.Cells["Price"].Value = sd.Price;
+                    row.Cells["Tax"].Value = sd.tax;
+                    row.Cells["ExclAmount"].Value = sd.ExclAmount;
+                    row.Cells["TaxAmount"].Value = sd.TaxAmount;
+                    row.Cells["InclAmount"].Value = sd.InclAmount;
+                    row.Cells["Id"].Value = sd.Id;
+                }
+            }
 
         }
         
@@ -155,7 +173,28 @@ namespace SPILPracticalTest
             }
             if (isEdit)
             {
+                foreach (DataGridViewRow row in dgvSales.Rows)
+                {
+                    int StockLink = Convert.ToInt32(row.Cells["ItemCode"].Value.ToString());
+                    int Id = Convert.ToInt32(row.Cells["Id"].Value.ToString());
 
+                    var editsalseDetails = _db.SalseDetails.Where(a => a.Id == Id).FirstOrDefault();
+
+                    var items = _db.StkItems.Where(a => a.StockLink == StockLink).FirstOrDefault();                  
+
+
+                    editsalseDetails.StkItemId = (int)row.Cells["ItemCode"].Value;
+                    editsalseDetails.Note1 = row.Cells["Note"].Value.ToString();
+                    editsalseDetails.ClientDetailId = index;
+                    editsalseDetails.Qty = Convert.ToInt32(row.Cells["Qty"].Value);
+                    editsalseDetails.tax = Convert.ToDecimal(row.Cells["Tax"].Value);
+                    editsalseDetails.TaxAmount = Convert.ToDecimal(row.Cells["TaxAmount"].Value);
+                    editsalseDetails.InclAmount = Convert.ToDecimal(row.Cells["InclAmount"].Value);
+                    editsalseDetails.ExclAmount = Convert.ToDecimal(row.Cells["ExclAmount"].Value);
+                    editsalseDetails.Price = Convert.ToDecimal(row.Cells["Price"].Value);
+                    
+                    _db.SaveChanges();
+                }
             }
             else
             {

@@ -32,8 +32,6 @@ namespace SPILPracticalTest
             this.plHome = new System.Windows.Forms.Panel();
             this.dgvHomeView = new System.Windows.Forms.DataGridView();
             this.btnAddNew = new System.Windows.Forms.Button();
-            this.crystalOpenFileDialog1 = new CrystalDecisions.Shared.Interop.CrystalOpenFileDialog();
-            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.plHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHomeView)).BeginInit();
             this.SuspendLayout();
@@ -69,18 +67,6 @@ namespace SPILPracticalTest
             this.btnAddNew.UseVisualStyleBackColor = true;
             this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
-            // crystalOpenFileDialog1
-            // 
-            this.crystalOpenFileDialog1.FileName = "crystalOpenFileDialog1";
-            // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = -1;
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.TabIndex = 0;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -102,7 +88,5 @@ namespace SPILPracticalTest
         private System.Windows.Forms.Panel plHome;
         private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.DataGridView dgvHomeView;
-        private CrystalDecisions.Shared.Interop.CrystalOpenFileDialog crystalOpenFileDialog1;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
     }
 }
